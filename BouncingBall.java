@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
@@ -60,6 +62,23 @@ public class BouncingBall extends JFrame {
 				mouseY = e.getY();
 			}
 		});
+		this.addKeyListener( new KeyAdapter (){
+			
+			@Override
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_UP){
+					rightPaddleY -=10;
+				}else if(e.getKeyCode()==KeyEvent.VK_DOWN){
+					rightPaddleY +=10;
+				}else if(e.getKeyCode()==KeyEvent.VK_W) {
+					leftPaddleY -=10;
+				}else if(e.getKeyCode()==KeyEvent.VK_S){
+					leftPaddleY +=10;
+			}
+			}
+		});
+		
+				
 
 		ActionListener updateTask = new ActionListener() {
 
@@ -79,8 +98,8 @@ public class BouncingBall extends JFrame {
 					changeBallColor();
 				}
 				//Set fixed paddles position
-				leftPaddleY = (getHeight()-40)/2 - leftPaddleHeight/2;
-				rightPaddleY = (getHeight()-40)/2 - rightPaddleHeight/2;
+		//leftPaddleY = (getHeight()-40)/2 - leftPaddleHeight/2;
+		//rightPaddleY = (getHeight()-40)/2 - rightPaddleHeight/2;
 				repaint();
 			}
 		};
